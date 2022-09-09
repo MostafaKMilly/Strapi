@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "task",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "assignee": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "tasks"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "taskType": {
+      "type": "enumeration",
+      "enum": [
+        "issue",
+        "feature",
+        "enhancement  "
+      ],
+      "required": true
+    },
+    "taskPriority": {
+      "type": "enumeration",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "required": true
+    },
+    "notes": {
+      "type": "text"
+    },
+    "labels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::label.label",
+      "mappedBy": "task"
+    },
+    "backlog": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::backlog.backlog",
+      "inversedBy": "tasks"
+    },
+    "Ticket": {
+      "type": "uid"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "toDo",
+        "inProgress",
+        "done"
+      ]
+    },
+    "sprint": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sprint.sprint",
+      "inversedBy": "tasks"
+    }
+  }
+}
